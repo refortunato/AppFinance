@@ -6,7 +6,7 @@ use AppFinance\Domain\Enums\UserType;
 use AppFinance\Domain\ValueObjects\Email;
 use AppFinance\Shared\Entity;
 
-class User extends Entity
+abstract class User extends Entity
 {
     private Email $email;
     private string $name;

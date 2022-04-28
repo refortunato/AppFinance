@@ -24,6 +24,8 @@ class Transfer extends Entity
         $this->origin = $origin;
         $this->destiny = $destiny;
         $this->value = $value;
+
+        $this->validate();
     }
 
     public function getRunDate(): \DateTime
@@ -43,5 +45,12 @@ class Transfer extends Entity
     public function getValue(): float
     { 
         return $this->value;
+    }
+
+    private function validate(): void
+    {
+        if ($this->value <= 0) {
+            throw new \DomainException("Valor de transferência deve ser maior que 0");
+        }
     }
 }
