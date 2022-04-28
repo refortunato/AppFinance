@@ -5,7 +5,7 @@ namespace AppFinance\Domain\Entities;
 use AppFinance\Domain\Enums\UserType;
 use AppFinance\Domain\ValueObjects\Email;
 
-class StoreUser extends User
+class CommonUser extends User
 {
     public function __construct(
         $id,
@@ -20,7 +20,7 @@ class StoreUser extends User
             $name,
             $hashed_password
         );
-        $this->user_type = UserType::STORE;
+        $this->user_type = UserType::COMMON;
         $this->validate();
     }
 }
