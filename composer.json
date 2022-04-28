@@ -1,0 +1,16 @@
+{
+    "name": "renanfortunato/mini-bank",
+    "description": "API Banco",
+    "autoload": {
+        "psr-4": {
+            "MiniBank\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Renan Fortunato",
+            "email": "renanfortunato09@gmail.com"
+        }
+    ],
+    "require": {}
+}

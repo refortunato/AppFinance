@@ -1,0 +1,30 @@
+version: '3'
+
+services:
+  api-bank:
+    build: .
+    restart: always
+    ports:
+      - '7072:80'
+    volumes:
+      - ./api-finance:/var/www
+    networks:
+      - default
+    # command: bash "mv /var/www/html /var/www/html_bkp && ln -s /var/myapp/public /var/www/html"
+    command: bash -c "rm /var/www/html && ln -s /var/www/public /var/www/html"
+    #command: ["ln", "-s", "/var/www/public", "/var/www/html"]
+    # command: ["ls", "-a"]
+  db:
+    image: mysql:5.7
+    restart: always
+    ports: 
+      - '3309:3306'
+    environment:
+      MYSQL_DATABASE: api_bank
+      MYSQL_USER: bank
+      MYSQL_PASSWORD: bank010203
+      MYSQL_ROOT_PASSWORD: root010203
+    volumes:
+      - ./data:/var/lib/mysql
+    networks:
+      - default
