@@ -1,20 +1,20 @@
 version: '3'
 
 services:
-  api-bank:
+  app-finance:
     build: .
     restart: always
+    container_name: app-finance
     ports:
       - '7072:80'
     volumes:
       - .:/var/www
     networks:
       - default
-    # command: bash "mv /var/www/html /var/www/html_bkp && ln -s /var/myapp/public /var/www/html"
-    command: bash -c "rm /var/www/html && ln -s /var/www/public /var/www/html"
-    #command: ["ln", "-s", "/var/www/public", "/var/www/html"]
-    # command: ["ls", "-a"]
+    # command: bash -c "ln -sf ./public ./html"
+    command: ["ln", "-s", "./public", "./html"]
   db:
+    container_name: db
     image: mysql:5.7
     restart: always
     ports: 
