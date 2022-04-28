@@ -3,7 +3,7 @@
     "description": "API Banco",
     "autoload": {
         "psr-4": {
-            "MiniBank\\": "src/"
+            "AppFinance\\": "src/"
         }
     },
     "authors": [
