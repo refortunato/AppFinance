@@ -7,7 +7,7 @@ services:
     ports:
       - '7072:80'
     volumes:
-      - ./api-finance:/var/www
+      - .:/var/www
     networks:
       - default
     # command: bash "mv /var/www/html /var/www/html_bkp && ln -s /var/myapp/public /var/www/html"
