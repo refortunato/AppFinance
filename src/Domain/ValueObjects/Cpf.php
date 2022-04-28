@@ -4,7 +4,7 @@ namespace AppFinance\Domain\ValueObjects;
 
 use AppFinance\Shared\Helpers\Strings;
 
-class Cpf
+class Cpf implements IDocument
 {
     private string $cpf_value;
 
@@ -41,5 +41,10 @@ class Cpf
     public function getValue(): string
     {
         return $this->cpf_value;
+    }
+
+    public function getType(): string
+    {
+        return 'CPF';
     }
 }

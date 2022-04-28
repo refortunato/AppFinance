@@ -4,7 +4,7 @@ namespace AppFinance\Domain\ValueObjects;
 
 use AppFinance\Shared\Helpers\Strings;
 
-class Cnpj
+class Cnpj implements IDocument
 {
     private string $cnpj_value;
 
@@ -49,5 +49,10 @@ class Cnpj
     public function getValue(): string
     {
         return $this->cnpj_value;
+    }
+
+    public function getType(): string
+    {
+        return 'CNPJ';
     }
 }
