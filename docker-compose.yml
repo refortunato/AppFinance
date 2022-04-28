@@ -20,9 +20,9 @@ services:
     ports: 
       - '3309:3306'
     environment:
-      MYSQL_DATABASE: api_bank
-      MYSQL_USER: bank
-      MYSQL_PASSWORD: bank010203
+      MYSQL_DATABASE: app_finance
+      MYSQL_USER: finance
+      MYSQL_PASSWORD: finance010203
       MYSQL_ROOT_PASSWORD: root010203
     volumes:
       - ./data:/var/lib/mysql
