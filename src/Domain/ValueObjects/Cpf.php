@@ -37,4 +37,9 @@ class Cpf
     
         return true;
     }
+
+    public function getValue(): string
+    {
+        return $this->cpf_value;
+    }
 }

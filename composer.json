@@ -1,6 +1,6 @@
 {
     "name": "renanfortunato/mini-bank",
-    "description": "API Banco",
+    "description": "API Financeiro",
     "autoload": {
         "psr-4": {
             "AppFinance\\": "src/"

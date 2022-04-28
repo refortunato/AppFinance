@@ -17,14 +17,13 @@ class User extends Entity
         $id,
         Email $email,
         string $name,
-        string $user_type,
         string $hashed_password
     )
     {
         parent::__construct($id);
         $this->name = $name;
         $this->email = $email;
-        $this->user_type = $user_type;
+        $this->user_type = UserType::COMMON;
         $this->hashed_password = $hashed_password;
 
         $this->validate();
