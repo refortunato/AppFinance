@@ -25,7 +25,7 @@ abstract class User extends Entity
     )
     {
         parent::__construct($id);
-        $this->name = $name;
+        $this->name = trim($name);
         $this->document = $document;
         $this->email = $email;
         $this->hashed_password = $hashed_password;
@@ -69,6 +69,9 @@ abstract class User extends Entity
 
     protected function validate()
     {
+        if (strlen($this->name) < 3) {
+            throw new \DomainException("Nome deve ter no mínimo 3 caracteres.");
+        }
         if (! in_array($this->user_type, UserType::getValues())  ) {
             throw new \DomainException("Tipo de usuário é inválido.");
         }
