@@ -7,14 +7,14 @@ use AppFinance\Shared\Entity;
 class Transfer extends Entity
 {
     private \DateTime $run_date;
-    private User $origin;
+    private CommonUser $origin;
     private User $destiny;
     private float $value;
 
     public function __construct(
         $id,
         \DateTime $rud_date,
-        User $origin,
+        CommonUser $origin,
         User $destiny,
         float $value
     )

@@ -6,7 +6,7 @@ use AppFinance\Shared\Helpers\Strings;
 
 class DocumentFactory
 {
-    public static function create(string $document_value): Cpf|Cnpj
+    public static function create(string $document_value): IDocument
     {
         $document_value = Strings::onlyNumber($document_value);
         if (strlen($document_value) < 12) {
