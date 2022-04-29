@@ -1,15 +1,15 @@
 <?php
 
-namespace AppFinance\Application\UseCases\CreateCommonUser;
+namespace AppFinance\Application\UseCases\CreateStoreUser;
 
-use AppFinance\Domain\Entities\CommonUser;
+use AppFinance\Domain\Entities\StoreUser;
 use AppFinance\Domain\Repositories\IUserRepository;
 use AppFinance\Domain\ValueObjects\DocumentFactory;
 use AppFinance\Domain\ValueObjects\Email;
 use AppFinance\Protocols\PasswordHasher;
 use AppFinance\Shared\Validators\TextValidator;
 
-class CreateCommonUser 
+class CreateStoreUser 
 {
     private IUserRepository $user_repository;
     private PasswordHasher $passwordHasher;
@@ -20,7 +20,7 @@ class CreateCommonUser
         $this->passwordHasher = $passwordHasher;
     }
 
-    public function execute(CreateCommonUserInputDto $inputParams): CreateCommonUserOutputDto 
+    public function execute(CreateStoreUserInputDto $inputParams): CreateStoreUserOutputDto 
     {
         TextValidator::validateOrException('E-mail', $inputParams->getEmail());
         TextValidator::validateOrException('Nome', $inputParams->getName());
@@ -34,7 +34,7 @@ class CreateCommonUser
 
         $hashed_password = $this->passwordHasher->hash($inputParams->getPassword());
 
-        $commonUser = new CommonUser(
+        $storeUser = new StoreUser(
             '',
             new Email($inputParams->getEmail()),
             DocumentFactory::create($inputParams->getCpfCnpj()),
@@ -49,14 +49,14 @@ class CreateCommonUser
             throw new \DomainException("E-mail já cadastrado.");
         }
 
-        $this->user_repository->save($commonUser);
+        $this->user_repository->save($storeUser);
 
-        return new CreateCommonUserOutputDto(
-            $commonUser->getId(),
-            $commonUser->getName(),
-            $commonUser->getDocument()->getValue(),
-            $commonUser->getDocument()->getType(),
-            $commonUser->getEmail()->getEmailAddress()
+        return new CreateStoreUserOutputDto(
+            $storeUser->getId(),
+            $storeUser->getName(),
+            $storeUser->getDocument()->getValue(),
+            $storeUser->getDocument()->getType(),
+            $storeUser->getEmail()->getEmailAddress()
         );
     }
 }
