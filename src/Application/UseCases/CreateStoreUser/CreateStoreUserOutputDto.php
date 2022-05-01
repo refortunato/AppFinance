@@ -55,8 +55,8 @@ class CreateStoreUserOutputDto
         return [
             'user_id' => $this->getUserId(),
             'user_name' => $this->getUserName(),
-            'document_number' => $this->getDocumentNumber(),
-            'document_type' => $this->getDocumentType(),
+            'cpf' => $this->getDocumentType() === 'CPF' ? $this->getDocumentNumber() : '',
+            'cnpj' => $this->getDocumentType() === 'CNPJ' ? $this->getDocumentNumber() : '',
             'email' => $this->getEmail(),
         ];
     }

@@ -62,7 +62,7 @@ class UserRepositorySql extends Repository implements IUserRepository
 
     public function existsUserWithEmail(string $email): bool
     {
-        $query = 'select * from '.$this->table.' where email = :email or cnpj = :cnpj';
+        $query = 'select * from '.$this->table.' where email = :email';
         $params = [
             ':email' => $email,
         ];

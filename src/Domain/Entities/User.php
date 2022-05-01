@@ -9,14 +9,14 @@ use AppFinance\Shared\Entity;
 
 abstract class User extends Entity
 {
-    private Email $email;
-    private string $name;
-    private string $user_type;
-    private string $hashed_password;
-    private IDocument $document;
-    private float $total_account_money;
+    protected Email $email;
+    protected string $name;
+    protected string $user_type;
+    protected string $hashed_password;
+    protected IDocument $document;
+    protected float $total_account_money;
 
-    private function __construct(
+    public function __construct(
         $id,
         Email $email,
         IDocument $document,
@@ -29,7 +29,7 @@ abstract class User extends Entity
         $this->document = $document;
         $this->email = $email;
         $this->hashed_password = $hashed_password;
-        $this->total_account_money = 0;
+        $this->total_account_money = 1000;
     }
 
     public function getEmail(): Email

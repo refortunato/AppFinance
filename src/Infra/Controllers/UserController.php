@@ -15,12 +15,19 @@ use AppFinance\Infra\Repositories\Sql\RepositorySqlFactory;
 use AppFinance\Shared\Controller\ControllerBase;
 use AppFinance\Shared\Controller\RequestController;
 use AppFinance\Shared\Exceptions\LoginException;
+use AppFinance\Shared\Validators\FieldsArrayValidator;
 
 class UserController extends ControllerBase
 {
     protected static function createCommonUser(RequestController $request): ?array
     {
         $body = $request->getBody();
+        FieldsArrayValidator::create($body)
+          ->checkField('name', 'Nome', 'text', ['max' => 100, 'min' => 2, 'blank' => false])
+          ->checkField('cpf_cnpj', 'CPF / CNPJ', 'text', ['max' => 20, 'min' => 11, 'blank' => false])
+          ->checkField('email', 'E-mail', 'text', ['max' => 100, 'blank' => false])
+          ->checkField('password', 'Senha', 'text', ['max' => 20, 'min' => 8])
+          ->checkField('repeat_password', 'Repetir senha', 'text', ['max' => 20, 'min' => 8]);
         $user_repository = RepositorySqlFactory::getUserRepository();
         $password_hasher = new PasswordHasherAdapter();
         $inputDto = new CreateCommonUserInputDto(
@@ -38,6 +45,12 @@ class UserController extends ControllerBase
     protected static function createStoreUser(RequestController $request): ?array
     {
         $body = $request->getBody();
+        FieldsArrayValidator::create($body)
+          ->checkField('name', 'Nome', 'text', ['max' => 100, 'min' => 2, 'blank' => false])
+          ->checkField('cpf_cnpj', 'CPF / CNPJ', 'text', ['max' => 20, 'min' => 11, 'blank' => false])
+          ->checkField('email', 'E-mail', 'text', ['max' => 100, 'blank' => false])
+          ->checkField('password', 'Senha', 'text', ['max' => 20, 'min' => 8])
+          ->checkField('repeat_password', 'Repetir senha', 'text', ['max' => 20, 'min' => 8]);
         $user_repository = RepositorySqlFactory::getUserRepository();
         $password_hasher = new PasswordHasherAdapter();
         $inputDto = new CreateStoreUserInputDto(

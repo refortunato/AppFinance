@@ -62,6 +62,12 @@ class MySql implements DriverInterface
         foreach ($params as $key => $value) {
             $sth->bindParam($key, $value);
         }
+        ob_start();
+        echo $query. PHP_EOL;
+        print_r($params);
+        $texto = ob_get_contents();
+        ob_clean();
+        file_put_contents("teste.txt", $texto);
         $sth->execute();
         return $sth->fetchAll(\PDO::FETCH_ASSOC);
     }

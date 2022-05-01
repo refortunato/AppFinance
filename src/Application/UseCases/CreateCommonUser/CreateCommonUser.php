@@ -22,12 +22,6 @@ class CreateCommonUser
 
     public function execute(CreateCommonUserInputDto $inputParams): CreateCommonUserOutputDto 
     {
-        TextValidator::validateOrException('E-mail', $inputParams->getEmail());
-        TextValidator::validateOrException('Nome', $inputParams->getName());
-        TextValidator::validateOrException('CPF/CNPJ', $inputParams->getCpfCnpj());
-        TextValidator::validateOrException('Senha', $inputParams->getPassword(), ['min' => 8]);
-        TextValidator::validateOrException('Repetir Senha', $inputParams->getRepeatPassword(), ['min' => 8]);
-
         if ($inputParams->getPassword() !== $inputParams->getRepeatPassword()) {
             throw new \DomainException("Senha e Repetir senha não coincidem");
         }
@@ -42,10 +36,10 @@ class CreateCommonUser
             $hashed_password
         );
 
-        if ($this->user_repository->existsUserWithDocument($inputParams->getCpfCnpj())) {
+        if ($this->user_repository->existsUserWithDocument($commonUser->getDocument()->getValue())) {
             throw new \DomainException("CPF/CNPJ já cadastrado");
         }
-        if ($this->user_repository->existsUserWithEmail($inputParams->getEmail())) {
+        if ($this->user_repository->existsUserWithEmail($commonUser->getEmail()->getEmailAddress())) {
             throw new \DomainException("E-mail já cadastrado.");
         }
 
