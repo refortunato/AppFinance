@@ -8,5 +8,5 @@ interface EmailSender
     public function setName(string $value);
     public function setEmailBody(string $value);
     public function setAttachment(string $path);
-    public function send();
+    public function send(): bool;
 }
