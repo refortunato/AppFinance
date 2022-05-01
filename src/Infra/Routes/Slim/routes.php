@@ -14,6 +14,15 @@ $app = AppFactory::create();
 // Convert To Json
 $app->add(new JsonBodyParserMiddleware());
 
+//Routes
+$app->get('/', function (Request $request, Response $response, $args) {
+    $response->getBody()->write("Hello world!");
+    return $response;
+});
+$app->get('/teste', function (Request $request, Response $response, $args) {
+    $response->getBody()->write("<h1>Teste</h1>");
+    return $response;
+});
 
 //Users
 $app->post('/common-user', function (Request $request, Response $response, $args) {
