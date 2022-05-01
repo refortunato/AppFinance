@@ -1,6 +1,6 @@
 <?php
 
-namespace AppFinance\Infra;
+namespace AppFinance\Infra\Encrypter;
 
 use AppFinance\Protocols\PasswordHasher;
 

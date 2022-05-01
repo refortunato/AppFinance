@@ -1,6 +1,6 @@
 <?php
 
-namespace Academia\Authentication\Infra\Criptography;
+namespace AppFinance\Infra\Encrypter;
 
 use AppFinance\Protocols\Jwt as JWTProtocol;
 use AppFinance\Shared\Exceptions\LoginException;

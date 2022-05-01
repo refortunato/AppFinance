@@ -1,10 +1,10 @@
 <?php
 
-namespace AppFinance\Application\UseCases\IsAuthorized;
+namespace AppFinance\Application\UseCases\TokenIsAuthorized;
 
 use AppFinance\Protocols\Jwt;
 
-class IsAuthorized
+class TokenIsAuthorized
 {
     private Jwt $jwt;
 
