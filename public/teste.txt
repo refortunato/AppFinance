@@ -1,0 +1,6 @@
+select * from users where cpf = :cpf or cnpj = :cnpj
+Array
+(
+    [:cpf] => 74571999003
+    [:cnpj] => 74571999003
+)

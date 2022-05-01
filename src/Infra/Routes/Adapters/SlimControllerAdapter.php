@@ -65,8 +65,7 @@ class SlimControllerAdapter
         $result = call_user_func_array($class.'::execute',[$method, $this->requestController]);
         $data = $result->getData();
         if (is_array($data)) {
-            //$data = json_encode($data,  JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_NUMERIC_CHECK);
-            $data = json_encode($data);
+            $data = json_encode($data,  JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES );
         }
         $response->getBody()->write($data);
         return $response

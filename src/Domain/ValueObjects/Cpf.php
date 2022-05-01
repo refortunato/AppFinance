@@ -19,22 +19,28 @@ class Cpf implements IDocument
 
     private function validate(): bool
     {
-        if (strlen($this->cpf_value) != 11 || preg_match('/([0-9])\1{10}/', $this->cpf_value)) {
+        $cpf = $this->cpf_value;
+        
+        // Verifica se foi informado todos os digitos corretamente
+        if (strlen($cpf) != 11) {
             return false;
         }
-        $number_quantity_to_loop = [9, 10];
-        foreach ($number_quantity_to_loop as $item) {
-            $sum = 0;
-            $number_to_multiplicate = $item + 1;
-            for ($index = 0; $index < $item; $index++) {
-                $sum += $this->cpf_value[$index] * ($number_to_multiplicate--);
+
+        // Verifica se foi informada uma sequência de digitos repetidos. Ex: 111.111.111-11
+        if (preg_match('/(\d)\1{10}/', $cpf)) {
+            return false;
+        }
+
+        // Faz o calculo para validar o CPF
+        for ($t = 9; $t < 11; $t++) {
+            for ($d = 0, $c = 0; $c < $t; $c++) {
+                $d += $cpf[$c] * (($t + 1) - $c);
             }
-            $result = (($sum * 10) % 11);
-            if ($this->cpf_value[$item] != $result) {
+            $d = ((10 * $d) % 11) % 10;
+            if ($cpf[$c] != $d) {
                 return false;
             }
         }
-    
         return true;
     }
 

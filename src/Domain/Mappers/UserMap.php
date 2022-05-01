@@ -18,8 +18,8 @@ class UserMap
         $array['name'] = $user->getName();
         $array['email'] = (string) $user->getEmail();
         $array['user_type'] = $user->getUserType();
-        $array['cpf'] = $user->getDocument()->getType() === 'CPF' ? $user->getDocument()->getValue() : '';
-        $array['cnpj'] = $user->getDocument()->getType() === 'CNPJ' ? $user->getDocument()->getValue() : '';
+        $array['cpf'] = $user->getDocument()->getType() === 'CPF' ? (string) $user->getDocument()->getValue() : '';
+        $array['cnpj'] = $user->getDocument()->getType() === 'CNPJ' ? (string) $user->getDocument()->getValue() : '';
         $array['total_account_money'] = $user->getTotalAccountMoney();
         
         return $array;
@@ -33,8 +33,8 @@ class UserMap
         $array['email'] = (string) $user->getEmail();
         $array['user_type'] = $user->getUserType();
         $array['password'] = $user->getHashedPassword();
-        $array['cpf'] = $user->getDocument()->getType() === 'CPF' ? $user->getDocument()->getValue() : '';
-        $array['cnpj'] = $user->getDocument()->getType() === 'CNPJ' ? $user->getDocument()->getValue() : '';
+        $array['cpf'] = $user->getDocument()->getType() === 'CPF' ? (string) $user->getDocument()->getValue() : '';
+        $array['cnpj'] = $user->getDocument()->getType() === 'CNPJ' ? (string) $user->getDocument()->getValue() : '';
         $array['total_account_money'] = $user->getTotalAccountMoney();
 
         return $array;
