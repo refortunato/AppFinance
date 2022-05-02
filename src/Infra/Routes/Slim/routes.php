@@ -1,5 +1,6 @@
 <?php
 
+use AppFinance\Infra\Controllers\TransactionController;
 use AppFinance\Infra\Controllers\UserController;
 use AppFinance\Infra\Routes\Adapters\SlimControllerAdapter;
 use AppFinance\Infra\Routes\Slim\JsonBodyParserMiddleware;
@@ -34,7 +35,17 @@ $app->post('/store-user', function (Request $request, Response $response, $args)
 $app->post('/login', function (Request $request, Response $response, $args) {
     return SlimControllerAdapter::create($request, $response, $args)->execute(UserController::class, 'login');
 });
+$app->map(['GET', 'POST'], '/is_authorized', function (Request $request, Response $response, $args) {
+    return SlimControllerAdapter::create($request, $response, $args)->executeWithAuth(UserController::class, 'isAuthorized');
+});
 
+//Transaction
+$app->post('/transfer', function (Request $request, Response $response, $args) {
+    return SlimControllerAdapter::create($request, $response, $args)->executeWithAuth(TransactionController::class, 'makeTransfer');
+});
+$app->get('/account-transactions', function (Request $request, Response $response, $args) {
+    return SlimControllerAdapter::create($request, $response, $args)->executeWithAuth(TransactionController::class, 'getAllOfUser');
+});
 
 
 

@@ -45,7 +45,7 @@ class JwtAdapter implements JWTProtocol
             throw new LoginException($e->getMessage());
         }
         catch (\DomainException $e) {
-            throw new LoginException('Invalid Token');
+            throw new LoginException('Invalid Token. '.$e->getMessage().' '.$e->getFile().' '.$e->getLine());
         }
     }
 }

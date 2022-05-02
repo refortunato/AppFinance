@@ -62,12 +62,6 @@ class MySql implements DriverInterface
         foreach ($params as $key => $value) {
             $sth->bindParam($key, $value);
         }
-        ob_start();
-        echo $query. PHP_EOL;
-        print_r($params);
-        $texto = ob_get_contents();
-        ob_clean();
-        file_put_contents("teste.txt", $texto);
         $sth->execute();
         return $sth->fetchAll(\PDO::FETCH_ASSOC);
     }
@@ -85,6 +79,26 @@ class MySql implements DriverInterface
     public function all()
     {
         return $this->sth->fetchAll(\PDO::FETCH_ASSOC);
+    }
+
+    public function beginTransaction(): bool
+    {
+        return $this->pdo->beginTransaction();
+    }
+
+    public function commit(): bool
+    {
+        return $this->pdo->commit();
+    }
+
+    public function rollBack(): bool
+    {
+        return $this->pdo->rollBack();
+    }
+
+    public function inTransaction(): bool
+    {
+        return $this->pdo->inTransaction();
     }
 
 }

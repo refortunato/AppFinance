@@ -2,7 +2,7 @@
 
 namespace AppFinance\Domain\Events;
 
-use AppFinance\Domain\Entities\Transfer;
+use AppFinance\Domain\Services\Transfer;
 use AppFinance\Protocols\EmailSender;
 use AppFinance\Protocols\Event;
 

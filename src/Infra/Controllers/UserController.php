@@ -100,6 +100,9 @@ class UserController extends ControllerBase
     protected static function login(RequestController $request): ?array
     {
         $body = $request->getBody();
+        FieldsArrayValidator::create($body)
+          ->checkField('email')
+          ->checkField('password');
         $user_repository = RepositorySqlFactory::getUserRepository();
         $password_hasher = new PasswordHasherAdapter();
         $jwt = new JwtAdapter();

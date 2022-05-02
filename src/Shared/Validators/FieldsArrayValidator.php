@@ -34,6 +34,9 @@ class FieldsArrayValidator
         if (strtolower($validate_as) === 'text') {
             TextValidator::validateOrException($field_description, $this->array_fields[$field_name], $rule);
         }
+        else if (strtolower($validate_as) === 'numeric') {
+            NumberValidator::validateOrException($field_description, $this->array_fields[$field_name]);
+        }
 
         return $this;
     }

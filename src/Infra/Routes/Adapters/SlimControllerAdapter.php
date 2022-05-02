@@ -2,6 +2,7 @@
 
 namespace AppFinance\Infra\Routes\Adapters;
 
+use AppFinance\Infra\Controllers\UserController;
 use AppFinance\Shared\Controller\RequestController;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
@@ -53,7 +54,6 @@ class SlimControllerAdapter
     {
         $response_auth = new \Slim\Psr7\Response();
         $response_auth = $this->executeControllerMethod(UserController::class, 'isAuthorized', $response_auth);
-        //var_dump($response_auth->getStatusCode());
         if ($response_auth->getStatusCode() != 200) {
             return $response_auth;
         }

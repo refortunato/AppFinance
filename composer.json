@@ -14,7 +14,7 @@
     ],
     "require": {
         "ramsey/uuid": "^4.2",
-        "firebase/php-jwt": "^6.1",
+        "firebase/php-jwt": "^5.4",
         "slim/slim": "4.*",
         "slim/psr7": "^1.5"
     }

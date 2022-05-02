@@ -21,4 +21,11 @@ class RepositorySqlFactory
         $userRepository = new UserRepositorySql($driver);
         return $userRepository;
     }
+
+    public static function getTransactionRepository(?DriverInterface $driver = null): TransactionRepositorySql
+    {
+        $driver = self::getDriver($driver);
+        $transactionRepositorySql = new TransactionRepositorySql($driver);
+        return $transactionRepositorySql;
+    }
 }

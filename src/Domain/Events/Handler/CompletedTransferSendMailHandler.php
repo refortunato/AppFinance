@@ -2,10 +2,9 @@
 
 namespace AppFinance\Domain\Events\Handler;
 
-use AppFinance\Domain\Events\CompletedTransfer;
 use AppFinance\Protocols\EmailSender;
-use AppFinance\Protocols\Event;
 use AppFinance\Protocols\EventHandler;
+use AppFinance\Shared\Exceptions\TransferException;
 
 class CompletedTransferSendMailHandler implements EventHandler
 {
@@ -16,7 +15,10 @@ class CompletedTransferSendMailHandler implements EventHandler
         $this->emailSender = $emailSender;
     }
 
-    public function notify(CompletedTransfer $event)
+    /**
+     * @param AppFinance\Domain\Events\CompletedTransfer $event
+     */
+    public function notify($event)
     {
         $transfer_data = [
             'email_destiny' => $event->getTransfer()->getDestinyAccount()->getEmail()->getEmailAddress(),
@@ -28,6 +30,8 @@ class CompletedTransferSendMailHandler implements EventHandler
         $this->emailSender->setName($transfer_data['name_destiny']);
         $this->emailSender->setEmailAddress($transfer_data['email_destiny']);
         $this->emailSender->setEmailBody($body);
-        $this->emailSender->send();
+        if (! $this->emailSender->send()) {
+            throw new TransferException("Não foi possível notificar o usuário");
+        }
     }
 }

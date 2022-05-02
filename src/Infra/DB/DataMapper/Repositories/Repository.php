@@ -21,6 +21,11 @@ abstract class Repository
         $this->driver = $driver;
     }
 
+    public function getDriver(): DriverInterface
+    {
+        return $this->driver;
+    }
+
     public function insert(Entity $entity): ?bool
     {
         $fields = $this->mapEntityToArrayFields($entity);
