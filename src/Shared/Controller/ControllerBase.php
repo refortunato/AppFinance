@@ -26,12 +26,12 @@ abstract class ControllerBase
             } catch (LoginException $e) {
                 return ResponseController::create(['message' => $e->getMessage()], HttpStatus::UNAUTHORIZED);
             } catch (\Exception $e) {
-                return  ResponseController::create(['message' => 'Internal Server Error 1', 'error' => $e->getMessage(). '. file: '. $e->getFile(). '. line: '.$e->getLine()], HttpStatus::INTERNAL_SERVER_ERROR);
+                return  ResponseController::create(['message' => 'Internal Server Error'], HttpStatus::INTERNAL_SERVER_ERROR);
             } catch (\Error $e){
-                return  ResponseController::create(['message' => 'Internal Server Error 2', 'error' => $e->getMessage(). '. file: '. $e->getFile(). '. line: '.$e->getLine()], HttpStatus::INTERNAL_SERVER_ERROR);
+                return  ResponseController::create(['message' => 'Internal Server Error'], HttpStatus::INTERNAL_SERVER_ERROR);
             }
             catch (\Throwable $t){
-                return  ResponseController::create(['message' => 'Internal Server Error 3', 'error' => $t->getMessage(). '. file: '. $t->getFile(). '. line: '.$t->getLine()], HttpStatus::INTERNAL_SERVER_ERROR);
+                return  ResponseController::create(['message' => 'Internal Server Error'], HttpStatus::INTERNAL_SERVER_ERROR);
             }
         }
         return ResponseController::create(['message' => 'Not Implemented'], HttpStatus::NOT_IMPLEMENTED);
