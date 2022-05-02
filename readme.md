@@ -21,7 +21,7 @@ Após baixar o repostório, entre no diretório da aplicação e execute o coman
 
 
 ```bash
-  docker-composer up --build
+  docker-compose up --build
 ```
 
 Isso deve levar alguns segundos. Caso ocorra algum erro, certifique-se de que as portas 8888 e 3309 não estejam ocupadas com alguma aplicação.
