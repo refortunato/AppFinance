@@ -9,6 +9,7 @@ services:
       - .:/var/www
     networks:
       - app-finance-network
+    # command: sh -c "composer install -n"
   nginx:
     image: nginx:latest
     container_name: app-nginx
