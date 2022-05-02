@@ -11,7 +11,7 @@ Faça um clone do repostório da aplicação em sua máquina
 Abra o terminal de sua preferência e execute o comando abaixo.
 
 ```bash
-  git clone https://git.........
+  git clone https://github.com/refortunato/AppFinance.git
 ```
 
 Caso não tenha o docker instalado, neste link é possivel encontrar a opção para fazer download para desktop para seu respctivo sistema operacional. https://docs.docker.com/desktop/
@@ -31,6 +31,20 @@ Execute o comando abaixo dentro do diretório da aplicação para o composer bai
   composer install
 ```
 
+Importe o arquivo **database.sql** que está na raíz do projeto para seu banco de dados MySql, isso fará com que as tabelas sejam criadas.
+Você poderá fazer isso utilizando PHPMyAdmin ou MySqlWorkbench (https://dev.mysql.com/downloads/workbench/).
+
+As strings de conexão com o banco de dados podem ser encontradas no script */src/Config/database.php* ou no aquivo *docker-compose.yml*.
+
+Caso queira acessar através do host, você pode utilizar as strings abaixo:
+
+**SERVER:** localhost 
+
+**PORT:** 3309
+
+**USER:** finance
+
+**PASSWORD:** finance010203
 
 ## Documentação da API
 
